@@ -9,6 +9,10 @@ public class TextComparisonService {
 
     public double compare(Set<String> setA, Set<String> setB, Set<String> filter) {
 
+        if (filter == null) {
+            return DiceCoefficient.score(setA, setB);
+        }
+
         return 42;
     }
 

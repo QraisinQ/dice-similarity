@@ -14,6 +14,7 @@ public class Menu {
     private Set<String> fileB = null; // Stores words
     private Set<String> filter = null; // Stores filter
     private TextWordSetLoader textLoader;
+    private TextComparisonService textService = new TextComparisonService();
 
     /**
      * Clears the console screen using ANSI escape codes.
@@ -95,6 +96,7 @@ public class Menu {
                 case "5":
                     Menu.clearScreen();
 
+                    compareFiles();
                     System.out.println();
                     System.out.println("Press Enter to continue...");
                     scanner.nextLine();
@@ -172,5 +174,18 @@ public class Menu {
             filterFilePath = "";
             filter = null;
         }
+    }
+
+    void compareFiles() {
+        if (fileA == null || fileB == null) {
+            System.out.println("Upload File A & File B!!!");
+            return;
+        }
+
+        if (filter == null && isFilteringMode) {
+            System.out.println("Upload Filter or turn it OFF!!!");
+        }
+
+        System.out.println("Comparison result: " + String.format("%.2f", textService.compare(fileA, fileB, filter)));
     }
 }
