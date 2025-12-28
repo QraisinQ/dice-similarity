@@ -70,6 +70,10 @@ public class Menu {
                     scanner.nextLine();
                     break;
                 case "2":
+                    loadFileB();
+
+                    System.out.println();
+                    System.out.println("Press Enter to continue...");
                     break;
                 case "3":
                     break;
@@ -117,6 +121,26 @@ public class Menu {
             System.err.println(e.getMessage());
             fileAPath = "";
             fileA = null;
+        }
+    }
+
+    private void loadFileB() {
+        Menu.clearScreen();
+        System.out.print("Enter path to input text file B or press Enter for default value: ");
+        String path = scanner.nextLine();
+
+        if (!path.isBlank()) {
+            fileBPath = path;
+        }
+
+        try {
+            fileB = textLoader.load(fileBPath);
+
+            System.out.println("Text B, tokens was loaded: " + fileB.size());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            fileBPath = "";
+            fileB = null;
         }
     }
 }
