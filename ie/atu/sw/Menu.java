@@ -54,13 +54,13 @@ public class Menu {
             System.out.println("1) Specify File A (current: " + fileAPath + ")");
             System.out.println("2) Specify File B (current: " + fileBPath + ")");
             System.out.println("3) Specify Filter File (current: " + filterFilePath + ")");
-            System.out.println("4) Switch to " + (isFilteringMode ? "Filering" : "No Filtering") + " Mode");
+            System.out.println("4) Switch Filtering Mode (current: " + (isFilteringMode ? "ON" : "OFF") + ")");
             System.out.println("5) Compare ");
             System.out.println("6) Show State ");
             System.out.println("7) Quit");
 
             System.out.print(ConsoleColour.BLUE_BOLD);
-            System.out.print("Select option [1-6]: ");
+            System.out.print("Select option [1-7]: ");
 
             String choice = scanner.nextLine();
 
@@ -89,6 +89,7 @@ public class Menu {
                 case "4":
                     Menu.clearScreen();
 
+                    toggleFilter();
                     System.out.println();
                     System.out.println("Press Enter to continue...");
                     scanner.nextLine();
@@ -187,8 +188,15 @@ public class Menu {
 
         if (filter == null && isFilteringMode) {
             System.out.println("Upload Filter or turn it OFF!!!");
+            return;
         }
 
         System.out.println("Comparison result: " + String.format("%.2f", textService.compare(fileA, fileB, filter)));
     }
+
+    void toggleFilter() {
+        isFilteringMode = !isFilteringMode;
+        System.out.println("Filtering Mode changed to: " + (isFilteringMode ? "ON" : "OFF"));
+    }
+
 }
