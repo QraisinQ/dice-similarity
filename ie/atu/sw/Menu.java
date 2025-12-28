@@ -2,6 +2,7 @@ package ie.atu.sw;
 
 import java.util.Scanner;
 import java.util.Set;
+import java.util.TreeSet;
 
 public class Menu {
     private Scanner scanner;
@@ -78,6 +79,11 @@ public class Menu {
                     scanner.nextLine();
                     break;
                 case "3":
+                    loadFileFilter();
+
+                    System.out.println();
+                    System.out.println("Press Enter to continue...");
+                    scanner.nextLine();
                     break;
                 case "4":
                     Menu.clearScreen();
@@ -145,6 +151,26 @@ public class Menu {
             System.err.println(e.getMessage());
             fileBPath = "";
             fileB = null;
+        }
+    }
+
+    private void loadFileFilter() {
+        Menu.clearScreen();
+        System.out.print("Enter path to filter text file or press Enter for default value: ");
+        String path = scanner.nextLine();
+
+        if (!path.isBlank()) {
+            filterFilePath = path;
+        }
+
+        try {
+            filter = new TreeSet<String>(FileUtility.readFileToList(filterFilePath));
+
+            System.out.println("Filter, words was loaded: " + filter.size());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            filterFilePath = "";
+            filter = null;
         }
     }
 }

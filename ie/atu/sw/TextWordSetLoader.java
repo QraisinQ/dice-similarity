@@ -7,7 +7,7 @@ public final class TextWordSetLoader {
 	WordTokenizer wt = new WordTokenizer();
 
 	public Set<String> load(String fileName) throws Exception {
-		var lines = FileUtility.readFileToArray(fileName);
+		var lines = FileUtility.readFileToList(fileName);
 		var result = new TreeSet<String>();
 
 		for (var line : lines) {
