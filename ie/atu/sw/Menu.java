@@ -9,9 +9,10 @@ public class Menu {
     private String fileBPath = "./2.txt"; // Default input file
     private String filterFilePath = "./google.txt";
     private boolean isFilteringMode = false;
-    private Set<String> fileA; // Stores words
-    private Set<String> fileB; // Stores words
-    private Set<String> filter; // Stores filter
+    private Set<String> fileA = null; // Stores words
+    private Set<String> fileB = null; // Stores words
+    private Set<String> filter = null; // Stores filter
+    private TextWordSetLoader textLoader;
 
     /**
      * Clears the console screen using ANSI escape codes.
@@ -28,6 +29,7 @@ public class Menu {
      */
     public Menu() {
         scanner = new Scanner(System.in);
+        textLoader = new TextWordSetLoader();
     }
 
     /**
@@ -61,6 +63,11 @@ public class Menu {
 
             switch (choice) {
                 case "1":
+                    loadFileA();
+
+                    System.out.println();
+                    System.out.println("Press Enter to continue...");
+                    scanner.nextLine();
                     break;
                 case "2":
                     break;
@@ -90,6 +97,26 @@ public class Menu {
                     System.out.println("Invalid option. Please select a number from 1 to 6.");
                     break;
             }
+        }
+    }
+
+    private void loadFileA() {
+        Menu.clearScreen();
+        System.out.print("Enter path to input text file A or press Enter for default value: ");
+        String path = scanner.nextLine();
+
+        if (!path.isBlank()) {
+            fileAPath = path;
+        }
+
+        try {
+            fileA = textLoader.load(fileAPath);
+
+            System.out.println("Text A, tokens was loaded: " + fileA.size());
+        } catch (Exception e) {
+            System.err.println(e.getMessage());
+            fileAPath = "";
+            fileA = null;
         }
     }
 }

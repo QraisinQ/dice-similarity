@@ -21,9 +21,13 @@ public class FileUtility {
      * @return List of strings, where each element represents one line of the file.
      * @throws IOException If the file cannot be read.
      */
-    public static List<String> readFileToArray(String fileName) throws IOException {
+    public static List<String> readFileToArray(String fileName) throws Exception {
 
-        // Files.readAllLines returns a List<String>
-        return Files.readAllLines(Paths.get(fileName));
+        try {
+            // Files.readAllLines returns a List<String>
+            return Files.readAllLines(Paths.get(fileName));
+        } catch (Exception e) {
+            throw new Exception("Error reading: " + fileName + "!!!");
+        }
     }
 }
