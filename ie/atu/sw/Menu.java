@@ -168,6 +168,9 @@ public class Menu {
         try {
             filter = new TreeSet<String>(FileUtility.readFileToList(filterFilePath));
 
+            if (filter.size() == 0)
+                throw new Exception("Empty filter!!!");
+
             System.out.println("Filter, words was loaded: " + filter.size());
         } catch (Exception e) {
             System.err.println(e.getMessage());
