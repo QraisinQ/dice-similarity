@@ -15,7 +15,7 @@ public class TextComparisonService {
         return result;
     }
 
-    public double compare(Set<String> setA, Set<String> setB, Set<String> filter) {
+    public SimilarityResult compare(Set<String> setA, Set<String> setB, Set<String> filter) {
 
         if (filter == null) {
             return DiceCoefficient.score(setA, setB);

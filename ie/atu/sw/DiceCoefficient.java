@@ -3,9 +3,9 @@ package ie.atu.sw;
 import java.util.Set;
 
 public final class DiceCoefficient {
-    public static double score(Set<String> a, Set<String> b) {
+    public static SimilarityResult score(Set<String> a, Set<String> b) {
         if (a.isEmpty() || b.isEmpty())
-            return 0.0;
+            return new SimilarityResult(0, a.size(), b.size(), 0);
 
         int intersection = 0;
         Set<String> small = a.size() <= b.size() ? a : b;
@@ -15,6 +15,8 @@ public final class DiceCoefficient {
             if (large.contains(w))
                 intersection++;
         }
-        return (2.0 * intersection) / (a.size() + b.size());
+        var result = (2.0 * intersection) / (a.size() + b.size());
+
+        return new SimilarityResult(result, a.size(), b.size(), intersection);
     }
 }

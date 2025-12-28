@@ -191,7 +191,14 @@ public class Menu {
             return;
         }
 
-        System.out.println("Comparison result: " + String.format("%.2f", textService.compare(fileA, fileB, filter)));
+        var comparisonResult = isFilteringMode ? textService.compare(fileA, fileB, filter)
+                : textService.compare(fileA, fileB, null);
+
+        System.out.println("Comparison result: ");
+        System.out.println("Dice coefficient: " + String.format("%.2f", comparisonResult.dice()));
+        System.out.println("Set A size: " + comparisonResult.sizeA());
+        System.out.println("Set B size: " + comparisonResult.sizeB());
+        System.out.println("Intersection: " + comparisonResult.intersection());
     }
 
     void toggleFilter() {
