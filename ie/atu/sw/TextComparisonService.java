@@ -1,10 +1,18 @@
 package ie.atu.sw;
 
 import java.util.Set;
+import java.util.TreeSet;
 
 public class TextComparisonService {
     private Set<String> filterInput(Set<String> inputSet, Set<String> filter) {
-        return null;
+        var result = new TreeSet<String>();
+
+        for (var token : inputSet) {
+            if (!filter.contains(token))
+                result.add(token);
+        }
+
+        return result;
     }
 
     public double compare(Set<String> setA, Set<String> setB, Set<String> filter) {
@@ -13,7 +21,10 @@ public class TextComparisonService {
             return DiceCoefficient.score(setA, setB);
         }
 
-        return 42;
+        var filteredA = filterInput(setA, filter);
+        var filteredB = filterInput(setB, filter);
+
+        return DiceCoefficient.score(filteredA, filteredB);
     }
 
 }
