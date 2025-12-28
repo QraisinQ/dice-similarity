@@ -1,0 +1,11 @@
+# Java build output
+*.class
+bin/
+out/
+
+# OS junk
+.DS_Store
+__MACOSX/
+
+# VS Code
+.vscode/
