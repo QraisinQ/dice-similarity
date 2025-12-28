@@ -103,7 +103,13 @@ public class Menu {
                     scanner.nextLine();
                     break;
                 case "6":
-                    return;
+                    Menu.clearScreen();
+
+                    showState();
+                    System.out.println();
+                    System.out.println("Press Enter to continue...");
+                    scanner.nextLine();
+                    break;
                 case "7":
                     scanner.close();
                     Menu.clearScreen();
@@ -206,4 +212,11 @@ public class Menu {
         System.out.println("Filtering Mode changed to: " + (isFilteringMode ? "ON" : "OFF"));
     }
 
+    void showState() {
+        System.out.println("System State:");
+        System.out.println("Set A: " + (fileA == null ? "Null" : fileA.size()));
+        System.out.println("Set B: " + (fileB == null ? "Null" : fileB.size()));
+        System.out.println("Filter: " + (filter == null ? "Null" : filter.size()));
+        System.out.println("Is Filtering: " + (isFilteringMode ? "ON" : "OFF"));
+    }
 }
