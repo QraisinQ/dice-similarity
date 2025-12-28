@@ -12,8 +12,6 @@ public class Menu {
             System.out.print("Select Option [1-5 or ?]>");
             System.out.println();
 
-            // Коміт 2: додамо ConsoleIO і реальний ввід + switch по опціях
-            // Поки не зациклюємось.
             running = false;
         }
     }
