@@ -53,8 +53,9 @@ public class Menu {
             System.out.println("2) Specify File B (current: " + fileBPath + ")");
             System.out.println("3) Specify Filter File (current: " + filterFilePath + ")");
             System.out.println("4) Switch to " + (isFilteringMode ? "Filering" : "No Filtering") + " Mode");
-            System.out.println("5) Compare... ");
-            System.out.println("6) Quit");
+            System.out.println("5) Compare ");
+            System.out.println("6) Show State ");
+            System.out.println("7) Quit");
 
             System.out.print(ConsoleColour.BLUE_BOLD);
             System.out.print("Select option [1-6]: ");
@@ -74,6 +75,7 @@ public class Menu {
 
                     System.out.println();
                     System.out.println("Press Enter to continue...");
+                    scanner.nextLine();
                     break;
                 case "3":
                     break;
@@ -92,6 +94,8 @@ public class Menu {
                     scanner.nextLine();
                     break;
                 case "6":
+                    return;
+                case "7":
                     scanner.close();
                     Menu.clearScreen();
                     System.out.println("Exiting application. Goodbye!");
