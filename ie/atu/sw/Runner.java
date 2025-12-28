@@ -3,6 +3,6 @@ package ie.atu.sw;
 public class Runner {
 
 	public static void main(String[] args) throws Exception {
-		new Menu().start();
+		new Menu().showMainMenu();
 	}
 }
