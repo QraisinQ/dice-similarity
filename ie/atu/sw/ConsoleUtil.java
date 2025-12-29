@@ -1,40 +1,44 @@
 package ie.atu.sw;
 
 /**
- * Utility methods for console output.
+ * Utility class for console output.
  */
 public final class ConsoleUtil {
+
     private ConsoleUtil() {
     }
 
     /**
-     * Prints a terminal progress meter (works best in real terminals, not Eclipse
-     * console).
+     * Prints a progress bar in the console.
      *
-     * @param index current step (1..total)
-     * @param total total steps
+     * @param index current step
+     * @param total total number of steps
      */
     public static void printProgress(int index, int total) {
-        if (index > total)
+        if (index > total) {
             return;
+        }
 
-        int size = 50; // must be less than console width
+        int size = 50;
         char done = '█';
         char todo = '░';
 
-        int complete = (100 * index) / total;
-        int completeLen = size * complete / 100;
+        int percent = (100 * index) / total;
+        int doneLength = size * percent / 100;
 
         StringBuilder sb = new StringBuilder();
         sb.append("[");
-        for (int i = 0; i < size; i++)
-            sb.append((i < completeLen) ? done : todo);
-        sb.append("] ").append(complete).append("%");
+
+        for (int i = 0; i < size; i++) {
+            sb.append(i < doneLength ? done : todo);
+        }
+
+        sb.append("] ").append(percent).append("%");
 
         System.out.print("\r" + sb);
 
-        // fix: finish line when last step is reached
-        if (index == total)
+        if (index == total) {
             System.out.println();
+        }
     }
 }
