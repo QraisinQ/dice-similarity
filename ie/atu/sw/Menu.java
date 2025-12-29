@@ -47,7 +47,7 @@ public class Menu {
             System.out.println("************************************************************");
             System.out.println("*     ATU - Dept. of Computer Science & Applied Physics    *");
             System.out.println("*                                                          *");
-            System.out.println("*                 Sorrensen-Dice compare                   *");
+            System.out.println("*     Comparing Text Documents with Virtual Threads        *");
             System.out.println("*                                                          *");
             System.out.println("************************************************************");
             System.out.println("\n=== Text Compare Application ===");
